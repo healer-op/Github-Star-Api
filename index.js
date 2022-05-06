@@ -12,7 +12,7 @@ app.use(cors());
 // 🌔 Express Routes
 
 app.get("/", async function (req, res) {
-    res.send("Made By Healer-op <br> http://localhost:3000/api/LocalMiner/Installer/healer-op");
+    res.send("Made By Healer-op <br>https://gitstars.cyberhub.repl.co/api/LocalMiner/Installer/healer-op");
 });
 
 
@@ -29,9 +29,13 @@ app.get("/api/:username/:repo/:name", async function (req, res) {
         })
         .then(data => {
             if(data.length > 0){
-                const find = data.find(elem => elem.login === name);
-                if(find.login == name){
+                let find = 0
+                find = data.find(elem => elem.login === name);
+                if(typeof find !== 'undefined' && find.login == name){
                     res.send(find)
+                }
+                else{
+                  res.send(`false`)
                 }
             }
             else{
